@@ -2,7 +2,7 @@
 In this project a mobile robot is chasing a ball inside a Gazebo envionment.Both eviornment and robot are customized
 for this project.The robot depends on camera to detect the ball and move toward it.
 
-<img src="images/course_code_structure.png" width="779" height="414" />
+![alt text](img/output.png)
 
 ## Directory Structure
 ```                   
