@@ -2,7 +2,22 @@
 #include "geometry_msgs/Twist.h"
 //TODO: Include the ball_chaser "DriveToTarget" header file
 #include <ball_chaser/DriveToTarget.h>
+#include <iostream>
+#include <string>
+#include <sstream>
 
+//To slove a bug in gcc 4.8 
+//here is the link for more details 
+//https://stackoverflow.com/questions/12975341/to-string-is-not-a-member-of-std-says-g-mingw
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
 // ROS::Publisher motor commands;
 ros::Publisher motor_command_publisher;
 
@@ -10,7 +25,7 @@ ros::Publisher motor_command_publisher;
 // This function should publish the requested linear x and angular velocities to the robot wheel joints
 // After publishing the requested velocities, a message feedback should be returned with the requested wheel velocities
 bool handle_drive_request(ball_chaser::DriveToTarget::Request &req,
-                      ball_chaser::DriveToTarget::Response &res)
+                          ball_chaser::DriveToTarget::Response &res)
 {
     //fill Twist motor msg with srv data
     geometry_msgs::Twist motor_msg;
@@ -20,8 +35,8 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request &req,
     motor_msg.angular.x = 0.0;
     motor_msg.angular.y = 0.0;
     motor_msg.angular.z = req.angular_z;
-    res.msg_feedback = res.msg_feedback = "Requested wheel velocites: linear_x: " + std::to_string(req.linear_x) +
-                                          ", angular_z: " + std::to_string(req.angular_z);;
+    res.msg_feedback = res.msg_feedback = "Requested wheel velocites: linear_x: " + patch::to_string(req.linear_x) +
+                                          ", angular_z: " + patch::to_string(req.angular_z);;
 
     //publish data
     motor_command_publisher.publish(motor_msg);
