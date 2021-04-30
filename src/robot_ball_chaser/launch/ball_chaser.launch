@@ -1,0 +1,16 @@
+<launch>
+
+  <!-- The drive_bot node -->
+  <!-- Launch other relevant files-->
+  <include file="$(find my_robot)/launch/world.launch"/>
+
+ <!-- The drive_bot node -->
+  <node name="robot_ball_chaser" type="robot_ball_chaser" pkg="robot_ball_chaser" output="screen">
+    <rosparam  command="load" file="$(find robot_ball_chaser)/config/defualt.yml" />
+  </node>
+
+  <node name="process_image_server" type="robot_ball_chaser_service_node" pkg="robot_ball_chaser" output="screen">
+    <rosparam  command="load" file="$(find robot_ball_chaser)/config/defualt.yml" />
+  </node>
+
+</launch>

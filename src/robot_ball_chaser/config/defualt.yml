@@ -1,0 +1,4 @@
+service_name: "/robot_ball_chaser/process_image"
+camera_topic: "/camera/rgb/image_raw"
+velocity_topic: "/cmd_vel"
+qeue_size: 10

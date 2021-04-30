@@ -26,7 +26,6 @@ void drive_robot(float lin_x, float ang_z)
 // This callback function continuously executes and reads the image data
 void process_image_callback(const sensor_msgs::Image img)
 {
-
     const int white_pixel = 255;
 
     bool is_ball_in_frame = false;

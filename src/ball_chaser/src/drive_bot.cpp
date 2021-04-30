@@ -36,7 +36,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request &req,
     motor_msg.angular.y = 0.0;
     motor_msg.angular.z = req.angular_z;
     res.msg_feedback = res.msg_feedback = "Requested wheel velocites: linear_x: " + patch::to_string(req.linear_x) +
-                                          ", angular_z: " + patch::to_string(req.angular_z);;
+                                          ", angular_z: " + patch::to_string(req.angular_z);
 
     //publish data
     motor_command_publisher.publish(motor_msg);
